@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import './index.css';
 
 const pizzaData = [
   {
@@ -48,7 +49,7 @@ const pizzaData = [
 
 function App() {
   return (
-    <div>
+    <div className='container'>
       <Header />
       <Menu />
       <Footer />
@@ -58,26 +59,78 @@ function App() {
 
 function Header() {
   return (
-    <header>
+    <header className='header'>
       <h1>Fast React Pizza Co.</h1>
-    </header>
+    </header >
   );
 }
 
 function Menu() {
+  const pizzas = pizzaData;
+  const numPizzas = pizzas.length;
+
   return (
-    <div>
+    <main className='menu'>
       <h2>Menu</h2>
-      <Pizza />
-      <Pizza />
-      <Pizza />
-    </div>
+      {/* Ternary operator */}
+      {numPizzas > 0 ? (
+        <ul className='pizzas'>
+          {pizzaData.map((pizza) => (
+            <Pizza pizzaObj={pizza} key={pizza.name} />
+          ))}
+        </ul>
+      ) : <p>We're still working on our menu. Please come back later.</p>}
+      {/* {numPizzas > 0 && (
+        <ul className='pizzas'>
+          {pizzaData.map((pizza) => (
+            <Pizza pizzaObj={pizza} key={pizza.name} />
+          ))}
+        </ul>
+      )} */}
+      {/* <div className='pizzas'>
+        {pizzaData.map((pizza) => (
+          <Pizza
+            name={pizza.name}
+            ingredient={pizza.ingredients}
+            photoName={pizza.photoName}
+            price={pizza.price}
+            key={pizza.name}
+          />
+        ))}
+      </div> */}
+
+      {/* <Pizza
+        name='Pizza Prosciutto'
+        ingredient='Tomato, mozarella, ham, aragula, and burrata cheese'
+        photoName='pizzas/prosciutto.jpg'
+        price={10}
+      />
+      <Pizza
+        name='Pizza Margherita'
+        ingredient='Tomato and mozarella'
+        photoName='pizzas/margherita.jpg'
+        price={10}
+      /> */}
+    </main>
+  );
+}
+
+function Pizza(props) {
+  return (
+    <li className='pizza'>
+      <img src={props.pizzaObj.photoName} alt={props.pizzaObj.name} />
+      <div className='pizza-info'>
+        <h3>{props.pizzaObj.name}</h3>
+        <p>{props.pizzaObj.ingredients}</p>
+        <span>${props.pizzaObj.price}</span>
+      </div>
+    </li>
   );
 }
 
 function Footer() {
-  const year = new Date().getFullYear();
-  const time = new Date().toLocaleTimeString();
+  // const year = new Date().getFullYear();
+  // const time = new Date().toLocaleTimeString();
   const hour = new Date().getHours();
   const openHour = 12;
   const closeHour = 22;
@@ -88,21 +141,14 @@ function Footer() {
   // else alert('We are closed!');
 
   return (
-    <footer>
-      <p>The time is {time}. We're currently open! © {year} Fast React Pizza Co.</p>
+    <footer className='footer'>
+      {isOpen ? (
+        <div className='order'>
+          <p>We're open until {closeHour}:00. Come visit us or order online.</p>
+          <button className='btn'>Order</button>
+        </div>
+      ) : <p>We're happy to welcome you between {openHour}:00 and {closeHour}:00.</p>}
     </footer>
-  );
-}
-
-// Functions starts with uppercase letter
-// Functions must return a single element
-function Pizza() {
-  return (
-    <div>
-      <img src="pizzas/prosciutto.jpg" alt="Pizza Prosciutto" />
-      <h2>Pizza Prosciutto</h2>
-      <p>Tomato, mozarella, ham, aragula, and burrata cheese</p>
-    </div>
   );
 }
 
