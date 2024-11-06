@@ -73,7 +73,9 @@ function Menu() {
     <main className='menu'>
       <h2>Menu</h2>
 
+      {/* Ternary operator */}
       {numPizzas > 0 ? (
+        // React.Fragment long version if a key is needed
         <>
           <p>Lorem ipsum odor amet, consectetuer adipiscing elit. Risus inceptos purus nulla dis, sem ad. Faucibus sed ad facilisis gravida interdum facilisis. </p>
           <ul className='pizzas'>
@@ -83,12 +85,45 @@ function Menu() {
           </ul>
         </>
       ) : <p>We're still working on our menu. Please come back later.</p>}
+      {/* {numPizzas > 0 && (
+        <ul className='pizzas'>
+          {pizzaData.map((pizza) => (
+            <Pizza pizzaObj={pizza} key={pizza.name} />
+          ))}
+        </ul>
+      )} */}
+      {/* <div className='pizzas'>
+        {pizzaData.map((pizza) => (
+          <Pizza
+            name={pizza.name}
+            ingredient={pizza.ingredients}
+            photoName={pizza.photoName}
+            price={pizza.price}
+            key={pizza.name}
+          />
+        ))}
+      </div> */}
+
+      {/* <Pizza
+        name='Pizza Prosciutto'
+        ingredient='Tomato, mozarella, ham, aragula, and burrata cheese'
+        photoName='pizzas/prosciutto.jpg'
+        price={10}
+      />
+      <Pizza
+        name='Pizza Margherita'
+        ingredient='Tomato and mozarella'
+        photoName='pizzas/margherita.jpg'
+        price={10}
+      /> */}
     </main>
   );
 }
 
 
 function Pizza({ pizzaObj }) {
+  // if (pizzaObj.soldOut) return null;
+
   return (
     <li className={`pizza ${pizzaObj.soldOut ? 'sold-out' : ''}`}>
       <img src={pizzaObj.photoName} alt={pizzaObj.name} />
@@ -102,10 +137,18 @@ function Pizza({ pizzaObj }) {
 }
 
 function Footer() {
+  // const year = new Date().getFullYear();
+  // const time = new Date().toLocaleTimeString();
   const hour = new Date().getHours();
   const openHour = 7;
   const closeHour = 22;
   const isOpen = hour >= openHour && hour <= closeHour;
+  console.log(isOpen);
+
+  // if (hour >= openHour && hour <= closeHour) alert('We are open!');
+  // else alert('We are closed!');
+
+  // if (!isOpen) alert('We are closed!');
 
   return (
     <footer className='footer'>
