@@ -1,0 +1,9 @@
+{
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "prettier.experimentalTernaries": true,
+  "prettier.jsxSingleQuote": false,
+  "prettier.singleAttributePerLine": true,
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
+}

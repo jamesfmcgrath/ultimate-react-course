@@ -19,6 +19,23 @@ code {
   justify-content: center;
   gap: 1rem;
   flex-wrap: wrap;
+  flex-direction: column;
+}
+
+.count,
+.steps {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.count {
+  flex-direction: row;
+}
+
+.steps {
+  flex-direction: column;
 }
 
 .date {
