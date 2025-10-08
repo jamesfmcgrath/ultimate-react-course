@@ -56,9 +56,13 @@ function Counter() {
         />
         <button onClick={handleIncreaseCount}>+</button>
       </div>
-      <div>
-        <button onClick={handleReset}>Reset</button>
-      </div>
+      {count !== 0 || step !== 1 ? (
+        <div>
+          <button onClick={handleReset}>Reset</button>
+        </div>
+      ) : (
+        ''
+      )}
       <p>
         {Math.abs(count)} {count === 0 && 'Today is '}
         {count < 0 && 'days ago from today was '}
