@@ -1,15 +1,15 @@
 import { useState } from 'react';
-import Box from './components/Box';
-import ErrorMessage from './components/ErrorMessage';
-import Loader from './components/Loader';
+import Box from './components/Box.js';
+import ErrorMessage from './components/ErrorMessage.js';
+import Loader from './components/Loader.js';
 import Main from './components/Main.js';
-import MovieDetails from './components/MovieDetails';
-import MoviesList from './components/MoviesList';
-import NavBar from './components/NavBar';
-import NumResults from './components/NumResults';
-import Search from './components/Search';
-import WatchedMoviesList from './components/WatchedMoviesList';
-import WatchedSummary from './components/WatchedSummary';
+import MovieDetails from './components/MovieDetails.js';
+import MoviesList from './components/MoviesList.js';
+import NavBar from './components/NavBar.js';
+import NumResults from './components/NumResults.js';
+import Search from './components/Search.js';
+import WatchedMoviesList from './components/WatchedMoviesList.js';
+import WatchedSummary from './components/WatchedSummary.js';
 import { useLocalStorageState } from './hooks/useLocalStorageState.js';
 import { useMovies } from './hooks/useMovies.js';
 

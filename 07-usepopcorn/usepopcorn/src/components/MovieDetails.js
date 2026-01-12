@@ -1,13 +1,15 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { useKey } from '../hooks/useKey';
 import Loader from './Loader';
 import StarRating from './StarRating';
+
+const KEY = 'fd1143fc';
 
 export default function MovieDetails({
   selectedID,
   onCloseMovie,
   onAddWatched,
   watched,
-  KEY,
 }) {
   const [movie, setMovie] = useState({});
   const [isLoading, setIsLoading] = useState(false);
@@ -16,6 +18,15 @@ export default function MovieDetails({
   const watchedUserRating = watched.find(
     (movie) => movie.imdbID === selectedID
   )?.userRating;
+
+  const countRef = useRef(0);
+
+  useEffect(
+    function () {
+      if (userRating) countRef.current++;
+    },
+    [userRating]
+  );
 
   const {
     Title: title,
@@ -39,6 +50,7 @@ export default function MovieDetails({
       imdbRating: Number(imdbRating),
       runtime: Number(runtime.split(' ').at(0)),
       userRating,
+      countRatingDecisions: countRef.current,
     };
     onAddWatched(newWatchedMovie);
     onCloseMovie();
@@ -57,7 +69,7 @@ export default function MovieDetails({
       }
       getMovieDetails();
     },
-    [selectedID, KEY]
+    [selectedID]
   );
 
   useEffect(
@@ -73,22 +85,7 @@ export default function MovieDetails({
     [title]
   );
 
-  useEffect(
-    function () {
-      function callback(e) {
-        if (e.code === 'Escape') {
-          onCloseMovie();
-        }
-      }
-
-      document.addEventListener('keydown', callback);
-
-      return function () {
-        document.removeEventListener('keydown', callback);
-      };
-    },
-    [onCloseMovie]
-  );
+  useKey('Escape', onCloseMovie);
 
   return (
     <div className="details">
