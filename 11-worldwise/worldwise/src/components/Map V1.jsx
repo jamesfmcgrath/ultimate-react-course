@@ -1,31 +1,38 @@
-import { useEffect, useState } from 'react';
-import {
-  MapContainer,
-  Marker,
-  Popup,
-  TileLayer,
-  useMap,
-  useMapEvents,
-} from 'react-leaflet';
+// import L from 'leaflet';
+// import iconRetinaUrl from 'leaflet/dist/images/marker-icon-2x.png';
+// import iconUrl from 'leaflet/dist/images/marker-icon.png';
+// import shadowUrl from 'leaflet/dist/images/marker-shadow.png';
+// Fix default marker icons in Vite (Leaflet's default paths don't resolve with bundlers)
+// delete L.Icon.Default.prototype._getIconUrl;
+// L.Icon.Default.mergeOptions({
+//   iconUrl,
+//   iconRetinaUrl,
+//   shadowUrl,
+// });
+import { useMap, useMapEvents } from 'react-leaflet';
 import { useNavigate } from 'react-router-dom';
-import { useCities } from '../contexts/CitiesContext';
-import { useGeolocation } from '../hooks/useGeolocation.js';
-import useUrlPosition from '../hooks/useUrlPosition.js';
-import Button from './Button';
+import { useCities } from '../contexts/CitiesContext.jsx';
+import { useGeolocation } from '../hooks/UseGeoLocation.js';
+
+import Button from './Button.jsx';
+
+import { useEffect, useState } from 'react';
+import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet';
+import { useSearchParams } from 'react-router-dom';
 import styles from './Map.module.css';
 
 function Map() {
   const { cities } = useCities();
   const [mapPosition, setMapPosition] = useState([40, 0]);
-
+  const [searchParams] = useSearchParams();
+  const mapLat = searchParams.get('lat');
+  const mapLng = searchParams.get('lng');
   const {
     isLoading: isLoadingPosition,
     position: geolocationPosition,
     error: geolocationError,
     getPosition,
   } = useGeolocation();
-
-  const [mapLat, mapLng] = useUrlPosition();
 
   useEffect(() => {
     if (mapLat && mapLng) setMapPosition([mapLat, mapLng]);
@@ -50,6 +57,10 @@ function Map() {
           scrollWheelZoom={true}
           className={styles.map}
         >
+          {/* <TileLayer
+            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            url="https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png"
+          /> */}
           <TileLayer
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
