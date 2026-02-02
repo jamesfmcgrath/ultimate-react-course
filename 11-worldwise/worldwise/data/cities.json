@@ -25,26 +25,14 @@
       "id": 17806751
     },
     {
-      "cityName": "Berlin",
-      "country": "Germany",
-      "emoji": "🇩🇪",
-      "date": "2027-02-12T09:24:11.863Z",
-      "notes": "Amazing 😃",
+      "cityName": "Fermanagh and Omagh",
+      "country": "United Kingdom of Great Britain and Northern Ireland (the)",
+      "emoji": "🇬🇧",
+      "date": "2026-02-02T10:40:39.885Z",
+      "notes": "",
       "position": {
-        "lat": 52.53586782505711,
-        "lng": 13.376933665713324
-      },
-      "id": 98443197
-    },
-    {
-      "cityName": "Westport",
-      "country": "Ireland",
-      "emoji": "🇮🇪",
-      "date": "2026-02-02T08:37:03.682Z",
-      "notes": "Home in the west",
-      "position": {
-        "lat": "53.79578417873881",
-        "lng": "-9.525146484375002"
+        "lat": "54.587979893849614",
+        "lng": "-7.292175292968751"
       },
       "id": 98443198
     }
